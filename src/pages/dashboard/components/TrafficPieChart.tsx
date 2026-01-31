@@ -1,0 +1,84 @@
+import React from 'react';
+import Highcharts from 'highcharts';
+import HighchartsReact from 'highcharts-react-official';
+
+const TrafficPieChart = () => {
+    const options: Highcharts.Options = {
+        chart: {
+            type: 'pie',
+            backgroundColor: 'transparent',
+            height: 350,
+            style: {
+                fontFamily: 'Poppins, sans-serif'
+            }
+        },
+        title: {
+            text: 'Source<br /> Breakdown',
+            align: 'center',
+            verticalAlign: 'middle',
+            y: 0,
+            style: {
+                fontSize: '14px',
+                fontWeight: 'bold',
+                color: '#475569'
+            }
+        },
+        tooltip: {
+            backgroundColor: '#ffffff',
+            borderColor: '#f1f5f9',
+            borderRadius: 12,
+            shadow: true,
+            style: {
+                color: '#1e293b'
+            },
+            pointFormat: '{series.name}: <b>{point.percentage:.1f}%</b>'
+        },
+        plotOptions: {
+            pie: {
+                innerSize: '75%', // Thinner donut
+                borderWidth: 0,
+                allowPointSelect: true,
+                cursor: 'pointer',
+                dataLabels: {
+                    enabled: false
+                },
+                showInLegend: true
+            }
+        },
+        legend: {
+            align: 'center',
+            verticalAlign: 'bottom',
+            layout: 'horizontal',
+            itemStyle: {
+                color: '#64748b',
+                fontWeight: '600',
+                fontSize: '12px',
+                padding: '4px'
+            },
+            itemMarginBottom: 8,
+            symbolRadius: 4
+        },
+        series: [{
+            type: 'pie',
+            name: 'Share',
+            data: [
+                { name: 'Direct', y: 45, color: '#6366f1' }, // Indigo
+                { name: 'Social', y: 25, color: '#f43f5e' }, // Rose
+                { name: 'Referral', y: 20, color: '#10b981' }, // Emerald
+                { name: 'Ads', y: 10, color: '#f59e0b' } // Amber
+            ]
+        }]
+    };
+
+    return (
+        <div className="bg-white p-6 rounded-3xl border border-slate-100 shadow-sm h-full hover:shadow-md transition-shadow">
+            <div className="mb-6">
+                <h3 className="text-lg font-bold text-slate-800 mb-1">Traffic Sources</h3>
+                <p className="text-slate-400 text-xs font-medium">Where your users are coming from</p>
+            </div>
+            <HighchartsReact highcharts={Highcharts} options={options} />
+        </div>
+    );
+};
+
+export default TrafficPieChart;

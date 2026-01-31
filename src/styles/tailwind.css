@@ -1,0 +1,161 @@
+@import "tailwindcss";
+
+/* Google Fonts Import */
+@import url('https://fonts.googleapis.com/css2?family=Public+Sans:wght@400;500;600;700&family=Inter:wght@400;500;600;700&family=DM+Sans:wght@400;500;700&family=Nunito+Sans:wght@400;600;700&family=Poppins:wght@300;400;500;600;700&display=swap');
+
+/* Theme CSS Variables - These are updated dynamically by ThemeProvider */
+:root {
+  /* Primary color palette (default: red) */
+  --theme-primary-50: #fef2f2;
+  --theme-primary-100: #fee2e2;
+  --theme-primary-200: #fecaca;
+  --theme-primary-300: #fca5a5;
+  --theme-primary-400: #f87171;
+  --theme-primary-500: #ef4444;
+  --theme-primary-600: #dc2626;
+  --theme-primary-700: #b91c1c;
+  --theme-primary-800: #991b1b;
+  --theme-primary-900: #7f1d1d;
+
+  /* Font settings */
+  --theme-font-family: "Poppins", sans-serif;
+  --theme-font-size: 16px;
+
+  /* Theme mode colors (light by default) */
+  --theme-bg: #ffffff;
+  --theme-bg-secondary: #f3f4f6;
+  --theme-text: #111827;
+  --theme-text-secondary: #6b7280;
+  --theme-border: #e5e7eb;
+
+  /* Glassmorphism Variables */
+  --glass-bg: rgba(255, 255, 255, 0.7);
+  --glass-border: rgba(255, 255, 255, 0.5);
+  --glass-blur: 12px;
+
+  /* Contrast multiplier */
+  --theme-contrast-multiplier: 1;
+}
+
+/* Tailwind v4 Theme Extension */
+@theme {
+  /* Map CSS variables to Tailwind colors */
+  --color-primary-50: var(--theme-primary-50);
+  --color-primary-100: var(--theme-primary-100);
+  --color-primary-200: var(--theme-primary-200);
+  --color-primary-300: var(--theme-primary-300);
+  --color-primary-400: var(--theme-primary-400);
+  --color-primary-500: var(--theme-primary-500);
+  --color-primary-600: var(--theme-primary-600);
+  --color-primary-700: var(--theme-primary-700);
+  --color-primary-800: var(--theme-primary-800);
+  --color-primary-900: var(--theme-primary-900);
+
+  /* Also create a default 'primary' that maps to 500 */
+  --color-primary: var(--theme-primary-500);
+
+  /* Semantic theme colors */
+  --color-theme-bg: var(--theme-bg);
+  --color-theme-bg-secondary: var(--theme-bg-secondary);
+  --color-theme-text: var(--theme-text);
+  --color-theme-text-secondary: var(--theme-text-secondary);
+  --color-theme-border: var(--theme-border);
+
+  /* Font family */
+  --font-sans: var(--theme-font-family);
+}
+
+/* Apply base font settings to html */
+html {
+  font-family: var(--theme-font-family);
+  font-size: var(--theme-font-size);
+  background-color: var(--theme-bg);
+  color: var(--theme-text);
+}
+
+/* Smooth transitions for theme changes */
+*,
+*::before,
+*::after {
+  transition: background-color 0.2s ease, color 0.2s ease, border-color 0.2s ease;
+}
+
+/* High contrast mode enhancements */
+.high-contrast {
+  --theme-primary-500: color-mix(in srgb, var(--theme-primary-500) 100%, black 15%);
+  font-weight: 500;
+  letter-spacing: 0.01em;
+}
+
+.high-contrast * {
+  text-shadow: none;
+  border-width: 2px;
+}
+
+/* Glassmorphism Utilities */
+.glass-panel {
+  background-color: var(--glass-bg);
+  backdrop-filter: blur(var(--glass-blur));
+  -webkit-backdrop-filter: blur(var(--glass-blur));
+  border: 1px solid var(--glass-border);
+}
+
+.glass-card {
+  background: rgba(255, 255, 255, 0.4);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
+}
+
+.dark .glass-card {
+  background: rgba(31, 41, 55, 0.4);
+  border: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+/* Ant Design Overrides for Glassmorphism */
+.glass-drawer .ant-drawer-content-wrapper {
+  box-shadow: -8px 0 24px rgba(0, 0, 0, 0.05);
+}
+
+.glass-drawer .ant-drawer-content {
+  background-color: transparent !important;
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+}
+
+.glass-drawer .ant-drawer-mask {
+  background-color: rgba(0, 0, 0, 0.1) !important;
+  backdrop-filter: blur(2px);
+}
+
+.glass-drawer .ant-drawer-header {
+  background-color: transparent !important;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+}
+
+.dark .glass-drawer .ant-drawer-header {
+  border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+/* Dark mode overrides update */
+.dark {
+  --glass-bg: rgba(17, 24, 39, 0.7);
+  --glass-border: rgba(255, 255, 255, 0.08);
+}
+
+.dark .ant-drawer-content {
+  color: var(--theme-text);
+}
+
+.dark .ant-slider-rail {
+  background-color: rgba(255, 255, 255, 0.1);
+}
+
+.dark .ant-switch {
+  background-color: rgba(255, 255, 255, 0.2);
+}
+
+.dark .ant-switch-checked {
+  background-color: var(--theme-primary-500);
+}
