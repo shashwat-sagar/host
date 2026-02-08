@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import { Test } from 'deo/Components';
+// import { Test } from 'deo/Components';
 import { ThemeDrawer, ThemeSettingsButton } from "../theme";
 
 const Theme = () => {
@@ -31,7 +31,7 @@ const Theme = () => {
           This text adapts to light/dark mode
         </p>
 
-        <Test />
+        {/* <Test /> */}
 
         {/* Theme Settings Button & Drawer */}
         <ThemeSettingsButton onClick={() => setDrawerOpen(true)} />

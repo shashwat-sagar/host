@@ -9,6 +9,7 @@ import { ThemePresetTiles } from './ThemePresetTiles';
 import { FontFamilySelector } from './FontFamilySelector';
 import { FontSizeSlider } from './FontSizeSlider';
 import { ModeToggles } from './ModeToggles';
+import { themeGradients } from '../themeConfig';
 import { useThemeStore } from '../../store/useThemeStore';
 
 interface ThemeDrawerProps {
@@ -17,7 +18,8 @@ interface ThemeDrawerProps {
 }
 
 export const ThemeDrawer: React.FC<ThemeDrawerProps> = ({ open, onClose }) => {
-  const { resetTheme } = useThemeStore();
+  const { resetTheme, colorPreset } = useThemeStore();
+  const gradient = themeGradients[colorPreset];
 
   const handleFullscreen = () => {
     if (!document.fullscreenElement) {
@@ -79,11 +81,11 @@ export const ThemeDrawer: React.FC<ThemeDrawerProps> = ({ open, onClose }) => {
         //   padding: '24px',
         //   background: 'var(--glass-bg)',
         // },
-        // mask: {
-        //   backdropFilter: 'blur(4px)',
-        // }
+        mask: {
+          backdropFilter: 'blur(4px)',
+        }
       }}
-      className='bg-transparent! bg-linear-to-br! from-indigo-50/80 via-purple-100/70 to-pink-200/90 backdrop-blur-xl'
+      className={`bg-transparent! bg-linear-to-br! ${gradient.from}/90 ${gradient.via}/90 ${gradient.to}/90 backdrop-blur-xl`}
     >
       <div className="space-y-8 pb-8">
         <section>

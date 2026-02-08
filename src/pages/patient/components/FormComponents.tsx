@@ -14,7 +14,7 @@ interface GlassCardProps {
 }
 
 const glowVariants = {
-    indigo: 'from-indigo-500/10 to-purple-500/10 hover:shadow-indigo-500/20',
+    indigo: 'from-indigo-500/10 to-purple-500/10 hover:shadow-indigo-200/20',
     rose: 'from-rose-500/10 to-orange-500/10 hover:shadow-rose-500/20',
     emerald: 'from-emerald-500/10 to-teal-500/10 hover:shadow-emerald-500/20',
     amber: 'from-amber-500/10 to-orange-500/10 hover:shadow-amber-500/20',
@@ -43,7 +43,7 @@ export const GlassCard = ({ children, title, icon, glowColor = 'indigo', classNa
                 ${className}
             `}
         >
-            <div className={`absolute inset-0 bg-gradient-to-br ${glowVariants[glowColor]} opacity-50 group-hover:opacity-100 transition-opacity duration-500`} />
+            <div className={`absolute inset-0 bg-gradient-to-br $ opacity-50 group-hover:opacity-100 transition-opacity duration-500`} />
 
             <div className="relative z-10 p-6 md:p-8 h-full flex flex-col">
                 {(title || icon) && (
@@ -84,7 +84,7 @@ export const GlowingInput = ({ label, name, rules, placeholder, prefix, type = '
                 <Input.TextArea
                     rows={rows}
                     placeholder={placeholder}
-                    className="!rounded-xl !bg-white/50 !border-slate-200 focus:!border-indigo-400 focus:!shadow-[0_0_0_4px_rgba(99,102,241,0.1)] !text-base !py-3 resize-none backdrop-blur-sm transition-all"
+                    className="!rounded-xl  !border-slate-300 focus:!border-indigo-400 focus:!shadow-[0_0_0_4px_rgba(99,102,241,0.1)] !text-base !py-3 resize-none backdrop-blur-sm transition-all"
                 />
             ) : type === 'number' ? (
                 <Input
@@ -92,7 +92,7 @@ export const GlowingInput = ({ label, name, rules, placeholder, prefix, type = '
                     prefix={prefix}
                     placeholder={placeholder}
                     disabled={disabled}
-                    className="!rounded-xl !bg-white/50 !border-slate-200 focus:!border-indigo-400 focus:!shadow-[0_0_0_4px_rgba(99,102,241,0.1)] !text-base !py-3 backdrop-blur-sm transition-all"
+                    className="!rounded-xl  !border-slate-300 focus:!border-indigo-400 focus:!shadow-[0_0_0_4px_rgba(99,102,241,0.1)] !text-base !py-3 backdrop-blur-sm transition-all"
                 />
             ) : (
                 <Input
@@ -100,7 +100,7 @@ export const GlowingInput = ({ label, name, rules, placeholder, prefix, type = '
                     prefix={prefix}
                     placeholder={placeholder}
                     disabled={disabled}
-                    className="!rounded-xl !bg-white/50 !border-slate-200 focus:!border-indigo-400 focus:!shadow-[0_0_0_4px_rgba(99,102,241,0.1)] !text-base !py-3 backdrop-blur-sm transition-all"
+                    className="!rounded-xl  !border-slate-300 focus:!border-indigo-400 focus:!shadow-[0_0_0_4px_rgba(99,102,241,0.1)] !text-base !py-3 backdrop-blur-sm transition-all"
                 />
             )}
         </Form.Item>

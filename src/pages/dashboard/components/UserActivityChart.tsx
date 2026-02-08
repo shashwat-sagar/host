@@ -1,8 +1,13 @@
 import React from 'react';
 import Highcharts from 'highcharts';
 import HighchartsReact from 'highcharts-react-official';
+import { useThemeStore } from '../../../store/useThemeStore';
+import { themeChartColors } from '../../../theme/themeConfig';
 
 const UserActivityChart = () => {
+    const { colorPreset } = useThemeStore();
+    const chartColors = themeChartColors[colorPreset];
+
     const options: Highcharts.Options = {
         chart: {
             type: 'column',
@@ -58,15 +63,7 @@ const UserActivityChart = () => {
                 pointWidth: 20,
                 borderWidth: 0,
                 colorByPoint: true, // Enable different colors per bar
-                colors: [
-                    '#38bdf8', // Sky
-                    '#60a5fa', // Blue
-                    '#818cf8', // Indigo
-                    '#a78bfa', // Violet
-                    '#c084fc', // Purple
-                    '#e879f9', // Fuchsia
-                    '#f472b6'  // Pink
-                ]
+                colors: chartColors.activity
             }
         },
         series: [{

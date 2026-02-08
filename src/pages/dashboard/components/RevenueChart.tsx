@@ -1,8 +1,13 @@
 import React from 'react';
 import Highcharts from 'highcharts';
 import HighchartsReact from 'highcharts-react-official';
+import { useThemeStore } from '../../../store/useThemeStore';
+import { themeChartColors } from '../../../theme/themeConfig';
 
 const RevenueChart = () => {
+    const { colorPreset } = useThemeStore();
+    const chartColors = themeChartColors[colorPreset];
+
     const options: Highcharts.Options = {
         chart: {
             type: 'areaspline',
@@ -75,19 +80,12 @@ const RevenueChart = () => {
             // Vibrant Gradient Line
             color: {
                 linearGradient: { x1: 0, x2: 1, y1: 0, y2: 0 },
-                stops: [
-                    [0, '#8b5cf6'], // Violet
-                    [0.5, '#ec4899'], // Pink
-                    [1, '#f43f5e'] // Rose
-                ]
+                stops: chartColors.revenue.stops as any
             } as any,
             // Rich Gradient Fill
             fillColor: {
                 linearGradient: { x1: 0, x2: 0, y1: 0, y2: 1 },
-                stops: [
-                    [0, 'rgba(139, 92, 246, 0.4)'],
-                    [1, 'rgba(244, 63, 94, 0.0)']
-                ]
+                stops: chartColors.revenue.fillStops as any // Updated property name to match config
             } as any
         }]
     };

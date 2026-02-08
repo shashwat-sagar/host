@@ -1,0 +1,36 @@
+@use "../variables" as *;
+
+
+.ActionButton {
+  display: inline-flex;
+  align-items: center;
+  line-height: 1;
+  gap: 6px;
+  transition: all 0.2s ease-in-out;
+}
+
+.verifyActionButton {
+  border: 1px solid rgb(43, 196, 43);
+  color: rgb(43, 196, 43);
+  background-color: transparent;
+
+  &:hover {
+    background-color: rgb(43, 196, 43);
+    color: #fff;
+  }
+}
+
+.rejectActionButton {
+  border: 1px solid rgb(252, 33, 33);
+  color: rgb(252, 33, 33);
+  background-color: transparent;
+
+  &:hover {
+    background-color: rgb(252, 33, 33);
+    color: #fff;
+  }
+}
+.InputSearch{
+   width: 300px;
+   margin: 10px 0;
+}

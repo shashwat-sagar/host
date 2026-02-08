@@ -46,7 +46,7 @@ const DashboardStats = () => {
                 shadowColor="shadow-blue-200"
             />
             <StatCard
-                title="New Projects"
+                title="New Surgeries"
                 value="45"
                 change="3.2%"
                 isPositive={false}

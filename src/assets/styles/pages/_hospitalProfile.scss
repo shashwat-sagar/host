@@ -1,0 +1,18 @@
+@use "../variables" as *;
+
+.hospital-profile-main {
+    border: 1px solid red; 
+}
+.form-section-title-Ctn{
+    display: flex;
+    align-items: center;
+    justify-content: start;
+
+    .form-section-title {
+        
+        font-size: medium;
+        font-weight: 700;
+        margin-bottom: 10px;
+        
+      }
+}

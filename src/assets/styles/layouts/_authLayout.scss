@@ -1,0 +1,80 @@
+@use "../variables" as *;
+.sider-logo-container {
+  width: 100%;
+  height: 100px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden;
+  padding: 0.5rem;
+  margin: 1rem 0;
+
+  .sider-logo {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 1rem;
+    padding: 0.5rem;
+    .logo {
+      width: 100%;
+      height: 100%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      object-fit: cover;
+      object-position: center;
+      border-radius: 1rem;
+    }
+  }
+}
+
+.sider-menu {
+  font-family: $poppins;
+  font-weight: 500;
+  font-size: 0.8rem;
+  padding: 0 0 4rem 0;
+}
+.sider-menu-heading {
+  display: flex;
+  margin: 1rem 0 0 0;
+  padding: 0 1rem;
+  p {
+    font-family: $poppins;
+    color: #505050;
+    font-weight: 600;
+    font-size: 0.7rem;
+  }
+}
+.header {
+  padding: 0 1.5rem;
+  .headerMenu {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    gap: 0.6rem;
+
+
+  }
+  
+  .header_user_info {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 0.6rem;
+    color: #505050;
+    font-family: $poppins;
+  }
+}
+.main-heading {
+  padding: 1rem;
+  background: linear-gradient(45deg, #0a71b7, #049646);
+  color: #fff;
+  margin-bottom: 1rem;
+}
+.sub-heading {
+  margin:1rem;
+  // background: linear-gradient(45deg, #0a71b7, #049646);
+  color: #055889;
+  margin-bottom: 1rem;
+}

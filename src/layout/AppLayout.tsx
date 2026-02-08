@@ -3,15 +3,20 @@ import { Layout } from 'antd';
 import MainSidebar from './MainSidebar';
 import MainHeader from './MainHeader';
 import { ThemeDrawer, ThemeSettingsButton } from '../theme';
+import { useThemeStore } from '../store/useThemeStore';
+import { themeGradients } from '../theme/themeConfig';
+import { Outlet } from 'react-router-dom';
 
 const { Content } = Layout;
 
-export default function AppLayout({ children }: { children: React.ReactNode }) {
+export default function AppLayout() {
     const [mobileSidebarOpen, setMobileSidebarOpen] = useState(false);
-      const [drawerOpen, setDrawerOpen] = useState(false);
+    const [drawerOpen, setDrawerOpen] = useState(false);
+    const { colorPreset } = useThemeStore();
+    const gradient = themeGradients[colorPreset];
 
     return (
-        <Layout className="!h-screen !overflow-hidden relative !bg-linear-to-br from-indigo-50 via-purple-50 to-pink-50">
+        <Layout className={`!h-screen !overflow-hidden relative !bg-linear-to-br ${gradient.from} ${gradient.via} ${gradient.to}`}>
 
             {/* Desktop Sidebar - Fixed Height handled by h-screen */}
             <MainSidebar />
@@ -27,13 +32,13 @@ export default function AppLayout({ children }: { children: React.ReactNode }) {
             <Layout className="!bg-transparent transition-all duration-300 w-full min-h-screen !overflow-y-auto">
                 <MainHeader onMenuClick={() => setMobileSidebarOpen(true)} />
 
-                <Content className="!m-4 md:!m-6 !mt-6 !p-4 md:!p-6 bg-white/50 !rounded-3xl !shadow-sm !min-h-fit"> 
-                    {children}<ThemeSettingsButton onClick={() => setDrawerOpen(true)} />
-                 </Content>
-               
+                <Content className="!m-4 md:!m-6 !mt-6 !p-4 md:!p-6 bg-white/50 !rounded-3xl !shadow-sm !min-h-fit">
+                    <Outlet /><ThemeSettingsButton onClick={() => setDrawerOpen(true)} />
+                </Content>
+
             </Layout>
-             
-                    <ThemeDrawer open={drawerOpen} onClose={() => setDrawerOpen(false)} />
+
+            <ThemeDrawer open={drawerOpen} onClose={() => setDrawerOpen(false)} />
         </Layout>
     );
 }

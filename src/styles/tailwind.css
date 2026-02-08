@@ -1,7 +1,10 @@
 @import "tailwindcss";
 
 /* Google Fonts Import */
-@import url('https://fonts.googleapis.com/css2?family=Public+Sans:wght@400;500;600;700&family=Inter:wght@400;500;600;700&family=DM+Sans:wght@400;500;700&family=Nunito+Sans:wght@400;600;700&family=Poppins:wght@300;400;500;600;700&display=swap');
+/* Google Fonts Import - Split for reliability and using standard weights */
+@import url("https://fonts.googleapis.com/css2?family=Bitter:wght@300;400;500;600;700&family=DM+Sans:wght@400;500;700&family=Inter:wght@300;400;500;600;700&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Nunito:wght@300;400;600;700&family=Nunito+Sans:wght@300;400;600;700&family=Poppins:wght@300;400;500;600;700&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Public+Sans:wght@300;400;500;600;700&family=SUSE:wght@100..800&display=swap");
 
 /* Theme CSS Variables - These are updated dynamically by ThemeProvider */
 :root {
@@ -16,7 +19,12 @@
   --theme-primary-700: #b91c1c;
   --theme-primary-800: #991b1b;
   --theme-primary-900: #7f1d1d;
-
+  --hero-gradient: linear-gradient(
+    135deg,
+    #0d6efd 0%,
+    #3b82f6 45%,
+    #7dd3fc 100%
+  );
   /* Font settings */
   --theme-font-family: "Poppins", sans-serif;
   --theme-font-size: 16px;
@@ -66,23 +74,45 @@
 }
 
 /* Apply base font settings to html */
-html {
-  font-family: var(--theme-font-family);
+/* Apply base font settings to html */
+html,
+body,
+.ant-app {
+  font-family: var(--theme-font-family) !important;
   font-size: var(--theme-font-size);
   background-color: var(--theme-bg);
   color: var(--theme-text);
+}
+
+/* Override Ant Design font family */
+.ant-layout,
+.ant-typography,
+.ant-btn,
+.ant-input,
+.ant-menu,
+.ant-select,
+.ant-drawer,
+.ant-modal {
+  font-family: var(--theme-font-family) !important;
 }
 
 /* Smooth transitions for theme changes */
 *,
 *::before,
 *::after {
-  transition: background-color 0.2s ease, color 0.2s ease, border-color 0.2s ease;
+  transition:
+    background-color 0.2s ease,
+    color 0.2s ease,
+    border-color 0.2s ease;
 }
 
 /* High contrast mode enhancements */
 .high-contrast {
-  --theme-primary-500: color-mix(in srgb, var(--theme-primary-500) 100%, black 15%);
+  --theme-primary-500: color-mix(
+    in srgb,
+    var(--theme-primary-500) 100%,
+    black 15%
+  );
   font-weight: 500;
   letter-spacing: 0.01em;
 }
@@ -159,3 +189,117 @@ html {
 .dark .ant-switch-checked {
   background-color: var(--theme-primary-500);
 }
+
+/* Ant Design Table Overrides for Premium Glassmorphism */
+.ant-table-wrapper .ant-table {
+  background: transparent !important;
+  color: var(--theme-text);
+}
+
+.ant-table-wrapper .ant-table-container {
+  border-radius: 8px;
+}
+
+/* Remove default backgrounds */
+.ant-table-wrapper .ant-table-thead > tr > th,
+.ant-table-wrapper .ant-table-tbody > tr > td,
+.ant-table-wrapper .ant-table-tbody > tr:hover > td,
+.ant-table-wrapper .ant-table-footer,
+.ant-table-wrapper .ant-table-summary {
+  background: transparent !important;
+  border-bottom-color: var(--theme-border);
+}
+
+/* Header Styling */
+/* Header Styling */
+.ant-table-wrapper .ant-table-thead > tr > th {
+  color: var(--theme-primary-600);
+  font-weight: 700;
+  text-transform: uppercase;
+  font-size: 0.75rem;
+  letter-spacing: 0.05em;
+  padding: 16px 16px;
+  border-bottom: 2px solid var(--theme-border);
+}
+
+/* Row Styling */
+.ant-table-wrapper .ant-table-tbody > tr > td {
+  padding: 16px 16px;
+  color: var(--theme-text);
+  font-size: 0.95rem;
+  transition: background-color 0.2s;
+}
+
+/* Row Hover Effect */
+.ant-table-wrapper .ant-table-tbody > tr:hover > td {
+  background-color: rgba(var(--theme-primary-500), 0.05) !important;
+}
+
+/* Pagination Styling */
+.ant-table-wrapper .ant-pagination {
+  margin: 16px 0 !important;
+}
+
+.ant-table-wrapper .ant-pagination-item {
+  background-color: transparent;
+  border-color: var(--theme-border);
+  border-radius: 6px;
+}
+
+.ant-table-wrapper .ant-pagination-item a {
+  color: var(--theme-text-secondary);
+}
+
+.ant-table-wrapper .ant-pagination-item-active {
+  background-color: var(--theme-primary-500);
+  border-color: var(--theme-primary-500);
+}
+
+.ant-table-wrapper .ant-pagination-item-active a {
+  color: #fff !important;
+}
+
+.ant-table-wrapper .ant-pagination-prev .ant-pagination-item-link,
+.ant-table-wrapper .ant-pagination-next .ant-pagination-item-link {
+  background-color: transparent !important;
+  border-color: var(--theme-border);
+  color: var(--theme-text-secondary);
+  border-radius: 6px;
+}
+
+.ant-table-wrapper .ant-table-column-sorter {
+  color: var(--theme-text-secondary);
+}
+
+/* Empty State */
+.ant-table-wrapper .ant-empty-description {
+  color: var(--theme-text-secondary);
+}
+
+/* Bordered Table Override */
+.ant-table-wrapper.ant-table-bordered .ant-table-container {
+  border: 1px solid var(--theme-border);
+}
+
+.ant-table-wrapper.ant-table-bordered .ant-table-thead > tr > th,
+.ant-table-wrapper.ant-table-bordered .ant-table-tbody > tr > td {
+  border-right: 1px solid var(--theme-border);
+}
+
+/* Dark Mode Specific Adjustments */
+.dark .ant-table-wrapper .ant-table-thead > tr > th {
+  border-bottom-color: rgba(255, 255, 255, 0.1);
+}
+
+.dark .ant-table-wrapper .ant-table-tbody > tr > td {
+  border-bottom-color: rgba(255, 255, 255, 0.05);
+}
+
+.dark .ant-table-wrapper .ant-table-tbody > tr:hover > td {
+  background-color: rgba(255, 255, 255, 0.05) !important;
+}
+
+
+  .hero-gradient{
+    background: var(--hero-gradient);
+  }
