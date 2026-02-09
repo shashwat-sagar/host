@@ -177,10 +177,10 @@ const MainSidebar = ({ mobile, open, onClose }: MainSidebarProps) => {
   ];
 
   const SidebarContent = (
-    <>
+    <div className="h-full flex flex-col">
       {/* Logo / Brand Area */}
       <div
-        className={`h-24 flex items-center ${collapsed && !mobile ? "justify-center" : "px-8"} transition-all duration-300`}
+        className={`h-16 flex items-center ${collapsed && !mobile ? "justify-center" : "px-6"} transition-all duration-300 shrink-0`}
       >
         <div
           className={`w-10 h-10 rounded-xl bg-gradient-to-tr ${accentGradient.from} ${accentGradient.to} flex items-center justify-center text-white shadow-md shadow-${colorPreset}-200 shrink-0`}
@@ -199,7 +199,7 @@ const MainSidebar = ({ mobile, open, onClose }: MainSidebarProps) => {
 
       {/* Toggle Button (Desktop Only) */}
       {!mobile && (
-        <div className="absolute -right-3 top-24 z-50">
+        <div className="absolute -right-4 top-16 z-50">
           <Button
             type="text"
             shape="circle"
@@ -210,31 +210,33 @@ const MainSidebar = ({ mobile, open, onClose }: MainSidebarProps) => {
         </div>
       )}
 
-      {/* Menu */}
-      <Menu
-        mode="inline"
-        selectedKeys={
-          location.pathname
-            ? [
-              items.find((item) => item.path === location.pathname)?.key ||
-              items
-                .flatMap((i) => i.children || [])
-                .find((c) => c.path === location.pathname)?.key ||
-              "",
-            ]
-            : []
-        }
-        className="!bg-transparent !border-none px-3 mt-2"
-        items={items.map((item) => ({
-          ...item,
-          className: `!my-1 tracking-wide !rounded-xl text-slate-500 !font-medium hover:!text-${colorPreset}-600 hover:!bg-${colorPreset}-50 !transition-all !duration-200`,
-        }))}
-        onClick={handleMenuClick}
-      />
+      {/* Menu - Scrollable Area */}
+      <div className="flex-1 overflow-y-auto px-3">
+        <Menu
+          mode="inline"
+          selectedKeys={
+            location.pathname
+              ? [
+                items.find((item) => item.path === location.pathname)?.key ||
+                items
+                  .flatMap((i) => i.children || [])
+                  .find((c) => c.path === location.pathname)?.key ||
+                "",
+              ]
+              : []
+          }
+          className="!bg-transparent !border-none mt-2"
+          items={items.map((item) => ({
+            ...item,
+            className: `!my-1 tracking-wide !rounded-xl text-slate-500 !font-medium hover:!text-${colorPreset}-600 hover:!bg-${colorPreset}-50 !transition-all !duration-200`,
+          }))}
+          onClick={handleMenuClick}
+        />
+      </div>
 
       {/* User Profile Summary at bottom */}
       <div
-        className={`absolute bottom-8 left-0 w-full px-4 ${collapsed && !mobile ? "flex justify-center" : ""}`}
+        className={`px-4 py-3 shrink-0 ${collapsed && !mobile ? "flex justify-center" : ""}`}
       >
         <div
           className={`flex items-center p-3 rounded-2xl bg-gradient-to-r from-slate-50 to-slate-100 border border-slate-100 ${collapsed && !mobile ? "justify-center w-12 h-12 p-0" : "gap-3"}`}
@@ -270,7 +272,7 @@ const MainSidebar = ({ mobile, open, onClose }: MainSidebarProps) => {
                     background: linear-gradient(135deg, ${accentGradient.fromColor} 0%, ${accentGradient.toColor} 100%) !important;
                 }
             `}</style>
-    </>
+    </div>
   );
 
   if (mobile) {
@@ -310,6 +312,7 @@ const MainSidebar = ({ mobile, open, onClose }: MainSidebarProps) => {
       style={{
         height: "calc(100vh - 32px)",
         position: "relative",
+        overflow: "visible",
       }}
     >
       {SidebarContent}

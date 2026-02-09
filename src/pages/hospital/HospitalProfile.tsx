@@ -34,6 +34,7 @@ import { useEffect } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 import { MdOutlineEmail } from "react-icons/md";
 import dayjs from "dayjs";
+import ScreenWrapper from "@/components/ScreenWrapper";
 
 const getstateApi = async () => {
   const { data } = await getState();
@@ -230,147 +231,141 @@ const HospitalProfile = () => {
   };
 
   return (
-    <>
-      <Heading title="Hospital Profile" />
-      <div className="p-4 bg-white rounded-xl shadow-sm m-2">
-        {isFetching ? (
-          <div className="flex justify-center p-20">
-            <Spin size="large" />
-          </div>
-        ) : (
-          <Form
-            form={form}
-            layout="vertical"
-            size="large"
-            onFinish={handleSubmit}
-            disabled={hospitalReg}
-          >
-            <SubHeading title="Contact Person Details" />
+    <ScreenWrapper title="Hospital Profile">
+      {isFetching ? (
+        <div className="flex justify-center p-20">
+          <Spin size="large" />
+        </div>
+      ) : (
+        <Form
+          form={form}
+          layout="vertical"
+          size="large"
+          onFinish={handleSubmit}
+          disabled={hospitalReg}
+        >
+          <SubHeading title="Contact Person Details" />
 
-            <div className="mt-10">
-              <Row gutter={[24, 16]}>
-                <Col span={24}>
-                  <h3 className="text-lg font-semibold text-slate-700 mb-4 border-l-4 border-blue-500 pl-3">
-                    Head of the Organisation / CEO
-                  </h3>
-                </Col>
-                <Col xs={24} md={8}>
-                  <Form.Item
-                    label="Contact Person Name"
-                    name="OrganisationPersonName"
-                    rules={[
-                      {
-                        required: true,
-                        message: "Please enter contact person name",
-                      },
-                    ]}
-                  >
-                    <Input
-                      placeholder="Contact Person Name"
-                      prefix={<FaUserTie className="text-blue-500 mr-2" />}
-                    />
-                  </Form.Item>
-                </Col>
-                <Col xs={24} md={8}>
-                  <Form.Item
-                    label="Mobile no"
-                    name="OrganisationMobile"
-                    rules={[
-                      { required: true, message: "Please enter mobile number" },
-                      {
-                        pattern: /^[6-9]\d{9}$/,
-                        message: "Please enter 10 digit valid mobile number",
-                      },
-                    ]}
-                  >
-                    <Input
-                      placeholder="Mobile no"
-                      prefix={<FaMobileAlt className="text-orange-500 mr-2" />}
-                    />
-                  </Form.Item>
-                </Col>
-                <Col xs={24} md={8}>
-                  <Form.Item
-                    label="Email Id"
-                    name="OrganisationEmail"
-                    rules={[
-                      { required: true, message: "Please enter email" },
-                      { type: "email", message: "Please enter valid email" },
-                    ]}
-                  >
-                    <Input
-                      placeholder="Email Id"
-                      prefix={
-                        <MdOutlineEmail className="text-green-500 mr-2" />
-                      }
-                    />
-                  </Form.Item>
-                </Col>
-              </Row>
+          <div className="mt-10">
+            <Row gutter={[24, 16]}>
+              <Col span={24}>
+                <h3 className="text-lg font-semibold text-slate-700 mb-4 border-l-4 border-blue-500 pl-3">
+                  Head of the Organisation / CEO
+                </h3>
+              </Col>
+              <Col xs={24} md={8}>
+                <Form.Item
+                  label="Contact Person Name"
+                  name="OrganisationPersonName"
+                  rules={[
+                    {
+                      required: true,
+                      message: "Please enter contact person name",
+                    },
+                  ]}
+                >
+                  <Input
+                    placeholder="Contact Person Name"
+                    prefix={<FaUserTie className="text-blue-500 mr-2" />}
+                  />
+                </Form.Item>
+              </Col>
+              <Col xs={24} md={8}>
+                <Form.Item
+                  label="Mobile no"
+                  name="OrganisationMobile"
+                  rules={[
+                    { required: true, message: "Please enter mobile number" },
+                    {
+                      pattern: /^[6-9]\d{9}$/,
+                      message: "Please enter 10 digit valid mobile number",
+                    },
+                  ]}
+                >
+                  <Input
+                    placeholder="Mobile no"
+                    prefix={<FaMobileAlt className="text-orange-500 mr-2" />}
+                  />
+                </Form.Item>
+              </Col>
+              <Col xs={24} md={8}>
+                <Form.Item
+                  label="Email Id"
+                  name="OrganisationEmail"
+                  rules={[
+                    { required: true, message: "Please enter email" },
+                    { type: "email", message: "Please enter valid email" },
+                  ]}
+                >
+                  <Input
+                    placeholder="Email Id"
+                    prefix={<MdOutlineEmail className="text-green-500 mr-2" />}
+                  />
+                </Form.Item>
+              </Col>
+            </Row>
 
-              <Divider className="my-8" />
+            <Divider className="my-8" />
 
-              <Row gutter={[24, 16]}>
-                <Col span={24}>
-                  <h3 className="text-lg font-semibold text-slate-700 mb-4 border-l-4 border-blue-500 pl-3">
-                    MOU Signing Authority
-                  </h3>
-                </Col>
-                <Col xs={24} md={8}>
-                  <Form.Item
-                    label="Contact Person Name"
-                    name="MOUPersonName"
-                    rules={[
-                      {
-                        required: true,
-                        message: "Please enter contact person name",
-                      },
-                    ]}
-                  >
-                    <Input
-                      placeholder="Contact Person Name"
-                      prefix={<FaUserTie className="text-blue-500 mr-2" />}
-                    />
-                  </Form.Item>
-                </Col>
-                <Col xs={24} md={8}>
-                  <Form.Item
-                    label="Mobile No."
-                    name="MOUMobile"
-                    rules={[
-                      {
-                        required: true,
-                        message: "Please enter Mobile Number!",
-                      },
-                      {
-                        pattern: /^[6-9]\d{9}$/,
-                        message: "Please enter 10 digit valid mobile number",
-                      },
-                    ]}
-                  >
-                    <Input
-                      placeholder="Mobile no"
-                      prefix={<FaMobileAlt className="text-orange-500 mr-2" />}
-                    />
-                  </Form.Item>
-                </Col>
-                <Col xs={24} md={8}>
-                  <Form.Item
-                    label="Email Id"
-                    name="MOUEmail"
-                    rules={[{ required: true, message: "Please enter Email!" }]}
-                  >
-                    <Input
-                      placeholder="Email Id"
-                      prefix={
-                        <MdOutlineEmail className="text-green-500 mr-2" />
-                      }
-                    />
-                  </Form.Item>
-                </Col>
-              </Row>
+            <Row gutter={[24, 16]}>
+              <Col span={24}>
+                <h3 className="text-lg font-semibold text-slate-700 mb-4 border-l-4 border-blue-500 pl-3">
+                  MOU Signing Authority
+                </h3>
+              </Col>
+              <Col xs={24} md={8}>
+                <Form.Item
+                  label="Contact Person Name"
+                  name="MOUPersonName"
+                  rules={[
+                    {
+                      required: true,
+                      message: "Please enter contact person name",
+                    },
+                  ]}
+                >
+                  <Input
+                    placeholder="Contact Person Name"
+                    prefix={<FaUserTie className="text-blue-500 mr-2" />}
+                  />
+                </Form.Item>
+              </Col>
+              <Col xs={24} md={8}>
+                <Form.Item
+                  label="Mobile No."
+                  name="MOUMobile"
+                  rules={[
+                    {
+                      required: true,
+                      message: "Please enter Mobile Number!",
+                    },
+                    {
+                      pattern: /^[6-9]\d{9}$/,
+                      message: "Please enter 10 digit valid mobile number",
+                    },
+                  ]}
+                >
+                  <Input
+                    placeholder="Mobile no"
+                    prefix={<FaMobileAlt className="text-orange-500 mr-2" />}
+                  />
+                </Form.Item>
+              </Col>
+              <Col xs={24} md={8}>
+                <Form.Item
+                  label="Email Id"
+                  name="MOUEmail"
+                  rules={[{ required: true, message: "Please enter Email!" }]}
+                >
+                  <Input
+                    placeholder="Email Id"
+                    prefix={<MdOutlineEmail className="text-green-500 mr-2" />}
+                  />
+                </Form.Item>
+              </Col>
+            </Row>
 
-              {/* <Divider className="my-8" />
+            {/* <Divider className="my-8" />
 
                             <Row gutter={[24, 16]}>
                                 <Col span={24}>
@@ -413,19 +408,18 @@ const HospitalProfile = () => {
                                 </Col>
                             </Row> */}
 
-              <Divider className="my-8" />
+            <Divider className="my-8" />
 
-              <Row gutter={[24, 16]}>
-                <Col span={24}>
-                  <h3 className="text-lg font-semibold text-slate-700 mb-4 border-l-4 border-blue-500 pl-3">
-                    Hospital Registration Details
-                  </h3>
-                </Col>
-             
-              </Row>
+            <Row gutter={[24, 16]}>
+              <Col span={24}>
+                <h3 className="text-lg font-semibold text-slate-700 mb-4 border-l-4 border-blue-500 pl-3">
+                  Hospital Registration Details
+                </h3>
+              </Col>
+            </Row>
 
-              <Row gutter={[24, 16]} className="mt-8">
-                {/* <Col xs={24} md={8}>
+            <Row gutter={[24, 16]} className="mt-8">
+              {/* <Col xs={24} md={8}>
                   <Form.Item
                     label="Hospital Rohini Id"
                     name="RohiniId"
@@ -439,47 +433,47 @@ const HospitalProfile = () => {
                     <Input placeholder="Hospital Rohini Id" />
                   </Form.Item>
                 </Col> */}
-                 <Col xs={24} md={8}>
-                  <Form.Item
-                    label="Hospital Registered With"
-                    name="RegisteredWith"
-                    rules={[
-                      {
-                        required: true,
-                        message: "Please enter Hospital Registered With",
-                      },
-                    ]}
-                  >
-                    <Input placeholder="Hospital Registered With" />
-                  </Form.Item>
-                </Col>
-                <Col xs={24} md={8}>
-                  <Form.Item
-                    label="Expiry Date"
-                    name="ExpiryDate"
-                    rules={[
-                      { required: true, message: "Please enter Expiry Date" },
-                    ]}
-                  >
-                    <DatePicker style={{ width: "100%" }} />
-                  </Form.Item>
-                </Col>
-                <Col xs={24} md={8}>
-                  <Form.Item
-                    label=" Certified With"
-                    name="NABHCertification"
-                    rules={[
-                      {
-                        required: true,
-                        message: "Please enter Certified With",
-                      },
-                    ]}
-                  >
-                    <Input placeholder="Certified With" />
-                  </Form.Item>
-                </Col>
-               
-                {/* <Col xs={24} md={8}>
+              <Col xs={24} md={8}>
+                <Form.Item
+                  label="Hospital Registered With"
+                  name="RegisteredWith"
+                  rules={[
+                    {
+                      required: true,
+                      message: "Please enter Hospital Registered With",
+                    },
+                  ]}
+                >
+                  <Input placeholder="Hospital Registered With" />
+                </Form.Item>
+              </Col>
+              <Col xs={24} md={8}>
+                <Form.Item
+                  label="Expiry Date"
+                  name="ExpiryDate"
+                  rules={[
+                    { required: true, message: "Please enter Expiry Date" },
+                  ]}
+                >
+                  <DatePicker style={{ width: "100%" }} />
+                </Form.Item>
+              </Col>
+              <Col xs={24} md={8}>
+                <Form.Item
+                  label=" Certified With"
+                  name="NABHCertification"
+                  rules={[
+                    {
+                      required: true,
+                      message: "Please enter Certified With",
+                    },
+                  ]}
+                >
+                  <Input placeholder="Certified With" />
+                </Form.Item>
+              </Col>
+
+              {/* <Col xs={24} md={8}>
                   <Form.Item
                     label="Other Certication"
                     name="OtherCertification"
@@ -487,139 +481,137 @@ const HospitalProfile = () => {
                     <Input placeholder="Other Certication" />
                   </Form.Item>
                 </Col> */}
-              </Row>
-            </div>
+            </Row>
+          </div>
 
-            <Divider className="my-10" />
-            {/* <SubHeading title="Hospital Additional Info" /> */}
-            <h3 className="text-lg font-semibold text-slate-700 mb-4 border-l-4 border-blue-500 pl-3">
-              Hospital Contact Details
-            </h3>
-            <div className="mt-6">
-              <Row gutter={[24, 16]}>
-                   <Col xs={24} md={8}>
-                  <Form.Item
-                    label="Contact Person Name"
-                    name="MarketingPersonName"
-                    rules={[
-                      {
-                        required: true,
-                        message: "Please enter Contact Person Name",
-                      },
-                    ]}
-                  >
-                    <Input
-                      placeholder="Contact Person Name"
-                      prefix={<FaUserTie className="text-blue-500 mr-2" />}
-                    />
-                  </Form.Item>
-                </Col>
-                <Col xs={24} md={8}>
-                  <Form.Item
-                    label="Mobile No."
-                    name="MarketingMobile"
-                    rules={[
-                      { required: true, message: "Please enter mobile number" },
-                      {
-                        pattern: /^[6-9]\d{9}$/,
-                        message: "Please enter 10 digit valid mobile number",
-                      },
-                    ]}
-                  >
-                    <Input
-                      placeholder="Mobile no"
-                      prefix={<FaMobileAlt className="text-orange-500 mr-2" />}
-                    />
-                  </Form.Item>
-                </Col>
-                <Col xs={24} md={8}>
-                  <Form.Item
-                    label="Email Id"
-                    name="MarketingEmail"
-                    rules={[
-                      { required: true, message: "Please enter Email Id" },
-                      { type: "email", message: "Please enter valid email" },
-                    ]}
-                  >
-                    <Input
-                      placeholder="Email Id"
-                      prefix={
-                        <MdOutlineEmail className="text-green-500 mr-2" />
-                      }
-                    />
-                  </Form.Item>
-                </Col>
-                <Col xs={24} md={6}>
-                  <Form.Item label="State" name="state">
-                    <Select
-                      options={stateData}
-                      placeholder="Select State"
-                      onChange={(value) => {
-                        form.setFieldsValue({ city: undefined });
-                        cityMutate(value);
-                      }}
-                    />
-                  </Form.Item>
-                </Col>
-                <Col xs={24} md={6}>
-                  <Form.Item label="City" name="city">
-                    <Select options={cityData} placeholder="Select City" />
-                  </Form.Item>
-                </Col>
-                <Col xs={24} md={6}>
-                  <Form.Item
-                    label="Pin"
-                    name="pinCode"
-                    rules={[
-                      {
-                        pattern: /^[1-9][0-9]{5}$/,
-                        message: "Please enter a valid 6-digit PIN code",
-                      },
-                    ]}
-                  >
-                    <Input placeholder="Pin" />
-                  </Form.Item>
-                </Col>
-                <Col xs={24} md={6}>
-                  <Form.Item label="Landmark" name="landmark">
-                    <Input placeholder="Landmark" />
-                  </Form.Item>
-                </Col>
-                <Col xs={24} md={6}>
-                  <Form.Item
-                    label="Phone No."
-                    name="phoneNo"
-                    rules={[
-                      {
-                        pattern: /^[6-9]\d{9}$/,
-                        message: "Please enter 10 digit valid mobile number",
-                      },
-                    ]}
-                  >
-                    <Input placeholder="Phone No." />
-                  </Form.Item>
-                </Col>
-                <Col xs={24} md={6}>
-                  <Form.Item label="Fax" name="fax">
-                    <Input placeholder="Fax" />
-                  </Form.Item>
-                </Col>
-                <Col xs={24} md={6}>
-                  <Form.Item label="Latitude" name="latitude">
-                    <Input placeholder="Latitude" />
-                  </Form.Item>
-                </Col>
-                <Col xs={24} md={6}>
-                  <Form.Item label="Longitude" name="longitude">
-                    <Input placeholder="Longitude" />
-                  </Form.Item>
-                </Col>
-                <Col xs={24} md={6}>
-                  <Form.Item label="Website" name="website">
-                    <Input placeholder="Website" />
-                  </Form.Item>
-                </Col>
-                {/* <Col xs={24} md={6}>
+          <Divider className="my-10" />
+          {/* <SubHeading title="Hospital Additional Info" /> */}
+          <h3 className="text-lg font-semibold text-slate-700 mb-4 border-l-4 border-blue-500 pl-3">
+            Hospital Contact Details
+          </h3>
+          <div className="mt-6">
+            <Row gutter={[24, 16]}>
+              <Col xs={24} md={8}>
+                <Form.Item
+                  label="Contact Person Name"
+                  name="MarketingPersonName"
+                  rules={[
+                    {
+                      required: true,
+                      message: "Please enter Contact Person Name",
+                    },
+                  ]}
+                >
+                  <Input
+                    placeholder="Contact Person Name"
+                    prefix={<FaUserTie className="text-blue-500 mr-2" />}
+                  />
+                </Form.Item>
+              </Col>
+              <Col xs={24} md={8}>
+                <Form.Item
+                  label="Mobile No."
+                  name="MarketingMobile"
+                  rules={[
+                    { required: true, message: "Please enter mobile number" },
+                    {
+                      pattern: /^[6-9]\d{9}$/,
+                      message: "Please enter 10 digit valid mobile number",
+                    },
+                  ]}
+                >
+                  <Input
+                    placeholder="Mobile no"
+                    prefix={<FaMobileAlt className="text-orange-500 mr-2" />}
+                  />
+                </Form.Item>
+              </Col>
+              <Col xs={24} md={8}>
+                <Form.Item
+                  label="Email Id"
+                  name="MarketingEmail"
+                  rules={[
+                    { required: true, message: "Please enter Email Id" },
+                    { type: "email", message: "Please enter valid email" },
+                  ]}
+                >
+                  <Input
+                    placeholder="Email Id"
+                    prefix={<MdOutlineEmail className="text-green-500 mr-2" />}
+                  />
+                </Form.Item>
+              </Col>
+              <Col xs={24} md={6}>
+                <Form.Item label="State" name="state">
+                  <Select
+                    options={stateData}
+                    placeholder="Select State"
+                    onChange={(value) => {
+                      form.setFieldsValue({ city: undefined });
+                      cityMutate(value);
+                    }}
+                  />
+                </Form.Item>
+              </Col>
+              <Col xs={24} md={6}>
+                <Form.Item label="City" name="city">
+                  <Select options={cityData} placeholder="Select City" />
+                </Form.Item>
+              </Col>
+              <Col xs={24} md={6}>
+                <Form.Item
+                  label="Pin"
+                  name="pinCode"
+                  rules={[
+                    {
+                      pattern: /^[1-9][0-9]{5}$/,
+                      message: "Please enter a valid 6-digit PIN code",
+                    },
+                  ]}
+                >
+                  <Input placeholder="Pin" />
+                </Form.Item>
+              </Col>
+              <Col xs={24} md={6}>
+                <Form.Item label="Landmark" name="landmark">
+                  <Input placeholder="Landmark" />
+                </Form.Item>
+              </Col>
+              <Col xs={24} md={6}>
+                <Form.Item
+                  label="Phone No."
+                  name="phoneNo"
+                  rules={[
+                    {
+                      pattern: /^[6-9]\d{9}$/,
+                      message: "Please enter 10 digit valid mobile number",
+                    },
+                  ]}
+                >
+                  <Input placeholder="Phone No." />
+                </Form.Item>
+              </Col>
+              <Col xs={24} md={6}>
+                <Form.Item label="Fax" name="fax">
+                  <Input placeholder="Fax" />
+                </Form.Item>
+              </Col>
+              <Col xs={24} md={6}>
+                <Form.Item label="Latitude" name="latitude">
+                  <Input placeholder="Latitude" />
+                </Form.Item>
+              </Col>
+              <Col xs={24} md={6}>
+                <Form.Item label="Longitude" name="longitude">
+                  <Input placeholder="Longitude" />
+                </Form.Item>
+              </Col>
+              <Col xs={24} md={6}>
+                <Form.Item label="Website" name="website">
+                  <Input placeholder="Website" />
+                </Form.Item>
+              </Col>
+              {/* <Col xs={24} md={6}>
                                     <Form.Item label="Type of Provider" name="providerType">
                                         <Select options={providerTypeData} placeholder="Select Provider Type" />
                                     </Form.Item>
@@ -629,7 +621,7 @@ const HospitalProfile = () => {
                                         <Select options={entityData} placeholder="Select Entity" />
                                     </Form.Item>
                                 </Col> */}
-                {/* <Col xs={24} md={6}>
+              {/* <Col xs={24} md={6}>
                                     <Form.Item label="Is Covid Treatment Available" name="Covid">
                                         <Radio.Group>
                                             <Radio value={true}>Yes</Radio>
@@ -637,24 +629,23 @@ const HospitalProfile = () => {
                                         </Radio.Group>
                                     </Form.Item>
                                 </Col> */}
-              </Row>
-            </div>
+            </Row>
+          </div>
 
-            <div className="flex justify-center mt-12 pb-8">
-              <Button
-                type="primary"
-                size="large"
-                htmlType="submit"
-                loading={submitPending}
-                className="px-12 h-12 rounded-full font-bold shadow-lg"
-              >
-                Update Profile
-              </Button>
-            </div>
-          </Form>
-        )}
-      </div>
-    </>
+          <div className="flex justify-center mt-12 pb-8">
+            <Button
+              type="primary"
+              size="large"
+              htmlType="submit"
+              loading={submitPending}
+              className="px-12 h-12 rounded-full font-bold shadow-lg"
+            >
+              Update Profile
+            </Button>
+          </div>
+        </Form>
+      )}
+    </ScreenWrapper>
   );
 };
 

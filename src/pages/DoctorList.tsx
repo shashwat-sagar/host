@@ -1,5 +1,5 @@
 import { useNavigate } from "react-router-dom";
-import { Heading, MasterTable } from "../components";
+import { MasterTable, ScreenWrapper } from "../components";
 import { Button, Tag } from "antd";
 import { EyeOutlined } from "@ant-design/icons";
 import type { ColumnsType } from "antd/es/table";
@@ -52,18 +52,15 @@ const DoctorList = () => {
   ];
 
   return (
-    <>
-      <Heading title={"Doctor List"} />
-      <div className="p-1 px-2 mvh-100">
-        <div className="rounded border border-gray-200 bg-white p-2">
+    <ScreenWrapper title="Doctor List">
+    
           <MasterTable
             rowKey="id"
             columns={columns}
             data={doctors}
             bordered />
-        </div>
-      </div>
-    </>
+      
+    </ScreenWrapper>
   );
 
 }

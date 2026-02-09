@@ -1,4 +1,4 @@
-import { Heading, MasterTable } from "../components";
+import { Heading, MasterTable, ScreenWrapper } from "../components";
 import { useNavigate } from "react-router-dom";
 import { Button, Table, Tag } from "antd";
 import { FaArrowRight } from "react-icons/fa";
@@ -167,21 +167,15 @@ const PatientList = () => {
   ];
 
   return (
-    <>
-      <Heading title={"Patient List"} />
-      <div className="p-1 px-2 mvh-100">
-        <div className="rounded border border-gray-200 bg-white p-2">
-          <MasterTable
-            rowKey="id"
-            columns={columns}
-            bordered
-            data={patients}
-            pagination={{ pageSize: 5 }}
-
-          />
-        </div>
-      </div>
-    </>
+    <ScreenWrapper title={"Patient List"}>
+      <MasterTable
+        rowKey="id"
+        columns={columns}
+        bordered
+        data={patients}
+        pagination={{ pageSize: 5 }}
+      />
+    </ScreenWrapper>
   );
 };
 

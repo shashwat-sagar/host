@@ -14,6 +14,8 @@ import Highcharts from 'highcharts';
 import HighchartsReact from 'highcharts-react-official';
 import { useThemeStore } from '../../store/useThemeStore';
 import { themeChartColors } from '../../theme/themeConfig';
+import { ScreenWrapper } from '@/components';
+import { FaUserDoctor } from 'react-icons/fa6';
 
 const StatCard = ({ title, value, change, isPositive, icon, bgGradient, iconBg, shadowColor }: any) => (
     <div className={`p-6 rounded-3xl shadow-lg hover:shadow-xl hover:-translate-y-1 transition-all duration-300 group ${bgGradient} ${shadowColor}`}>
@@ -75,12 +77,9 @@ const DoctorDashboard = () => {
     };
 
     return (
-        <div className="min-h-full pb-8">
+        <ScreenWrapper title='Doctor Dashboard'>
             {/* Header section matching Dashboard.tsx */}
-            <div className="mb-8">
-                <h1 className="text-2xl font-bold text-slate-800">Doctor Dashboard</h1>
-                <p className="text-slate-400 text-sm">Welcome back, Dr. Alex! Here's your practice overview for today.</p>
-            </div>
+           
 
             {/* Stats Row */}
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-8">
@@ -274,7 +273,7 @@ const DoctorDashboard = () => {
                     </div>
                 </div>
             </div>
-        </div>
+        </ScreenWrapper>
     );
 };
 

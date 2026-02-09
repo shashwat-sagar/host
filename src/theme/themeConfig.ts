@@ -94,7 +94,7 @@ export const fontFamilies: Record<FontFamily, string> = {
 
 // Default theme configuration
 export const defaultThemeConfig: ThemeConfig = {
-    colorPreset: 'indigo',
+    colorPreset: 'blue',
     fontFamily: 'Poppins',
     fontSize: 14,
     themeMode: 'light',

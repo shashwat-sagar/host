@@ -1,5 +1,6 @@
 import "./styles/tailwind.css";
-// import "deo/Tailwind";
+// import "./styles/custom.css";
+
 import { ThemeProvider } from "./theme";
 import { RouterProvider } from "react-router-dom";
 import router from "./router";

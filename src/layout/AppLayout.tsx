@@ -32,7 +32,7 @@ export default function AppLayout() {
             <Layout className="!bg-transparent transition-all duration-300 w-full min-h-screen !overflow-y-auto">
                 <MainHeader onMenuClick={() => setMobileSidebarOpen(true)} />
 
-                <Content className="!m-4 md:!m-6 !mt-6 !p-4 md:!p-6 bg-white/50 !rounded-3xl !shadow-sm !min-h-fit">
+                <Content className="m-4! md:m-6! !mt-6! bg-white! dark:bg-gray-800/50 rounded-3xl shadow-lg min-h-fit! overflow-hidden">
                     <Outlet /><ThemeSettingsButton onClick={() => setDrawerOpen(true)} />
                 </Content>
 
